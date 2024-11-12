@@ -1,0 +1,17 @@
+/* Custom scrollbar styles */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 1px; /* Makes the scrollbar thinner */
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Track color */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #4a90e2; /* Thumb color */
+  border-radius: 1px; /* Rounded edges */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: #357abd; /* Thumb color on hover */
+}
