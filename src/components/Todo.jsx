@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaRegCalendarPlus, FaTrashAlt } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
-import { BsBoxArrowUpRight } from "react-icons/bs";
+import { MdOutlineCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
 import { IoTrashBin } from "react-icons/io5";
 
 function Todo() {
@@ -31,6 +31,7 @@ function Todo() {
     const task = {
       id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
       taskName: newTask,
+      completed: false, // Set initial completed state to false
     };
     setTodoList([...todoList, task]);
     setNewTask("");
@@ -46,6 +47,14 @@ function Todo() {
 
   const deleteAllTask = () => {
     setTodoList([]);
+  };
+
+  const toggleCompleted = (id) => {
+    setTodoList(
+      todoList.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
   };
 
   const handleKeyDown = (event) => {
@@ -95,11 +104,25 @@ function Todo() {
               key={task.id}
               className="flex items-center justify-between border-b-2 border-orange-500 hover:bg-slate-100/20 rounded-sm px-4 py-2 mr-3"
             >
-              <p className="font-poppinsRegular text-sm sm:text-base text-nowrap text-white truncate">
+              <p
+                className={`font-poppinsRegular text-sm sm:text-base text-nowrap truncate ${
+                  task.completed ? "line-through text-gray-400" : "text-white"
+                }`}
+              >
                 {task.taskName}
               </p>
               <div className="flex justify-center items-center space-x-5 ml-5">
-                <BsBoxArrowUpRight className="text-xl text-blue-500 cursor-pointer" />
+                {task.completed ? (
+                  <MdCheckBox
+                    onClick={() => toggleCompleted(task.id)}
+                    className="text-xl text-green-500 cursor-pointer"
+                  />
+                ) : (
+                  <MdOutlineCheckBoxOutlineBlank
+                    onClick={() => toggleCompleted(task.id)}
+                    className="text-xl text-blue-500 cursor-pointer"
+                  />
+                )}
                 <FaTrashAlt
                   onClick={() => deleteTask(task.id)}
                   className="text-xl text-red-500 cursor-pointer"
