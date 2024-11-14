@@ -31,7 +31,7 @@ function Todo() {
     const task = {
       id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
       taskName: newTask,
-      completed: false, // Set initial completed state to false
+      completed: false,
     };
     setTodoList([...todoList, task]);
     setNewTask("");
@@ -64,7 +64,7 @@ function Todo() {
   };
 
   return (
-    <div className="flex flex-col bg-gradient-to-bl from-slate-700 to-slate-500 py-8 rounded-xl gap-y-8 w-[93%] max-w-7xl md:w-[460px] min-h-[90vh] px-1">
+    <div className="flex flex-col bg-gradient-to-bl from-slate-700 to-slate-500 py-8 rounded-xl gap-y-8 w-[93%] max-w-7xl md:w-[460px] min-h-[82vh] px-1">
       <header className="flex items-start justify-center space-x-2">
         <FaRegCalendarPlus className="text-3xl min-w-10 text-white" />
         <h1 className="font-poppinsBold text-3xl text-white">To-Do List</h1>
@@ -98,11 +98,11 @@ function Todo() {
           </p>
         </div>
 
-        <div className="flex flex-col flex-grow gap-y-1 max-h-[calc(90vh*0.5)] overflow-y-scroll scrollbar-thin scrollbar-thumb-stone-500 scrollbar-track-transparent pl-3">
+        <div className="flex flex-col flex-grow gap-y-1 max-h-[calc(90vh*0.4)] overflow-y-scroll scrollbar-thin scrollbar-thumb-stone-500 scrollbar-track-transparent pl-3">
           {todoList.map((task) => (
             <div
               key={task.id}
-              className="flex items-center justify-between border-b-2 border-orange-500 hover:bg-slate-100/20 rounded-sm px-2 md:px-3 py-2 mr-3"
+              className="flex items-center justify-between border-b-2 border-orange-500 hover:bg-slate-100/20 rounded-sm px-2 md:px-3 py-1 mr-3"
             >
               <p
                 className={`font-poppinsRegular text-sm sm:text-base text-nowrap truncate ${
